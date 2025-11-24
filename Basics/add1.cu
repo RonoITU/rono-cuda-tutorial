@@ -19,6 +19,10 @@
  * The same instruction will run in parallel on multiple CUDA kernels, with distinct indexing.
  */
 __global__ void add(int* a, int* b, int* c) {
+    // threadIdx.x controls the offset within a block. 
+    // blockDim.x is the size of a block. I.e. 256. 
+    // blockIdx.x is needed to execute grids of multiple blocks. 
+    // 2D and 3D blocks and grids will also have .y and .z input. 
     int i = threadIdx.x + blockDim.x * blockIdx.x;
     c[i] = a[i] + b[i];
 }
@@ -34,8 +38,13 @@ int main() {
         vector_b[i] = 256 - i;
     }
 
-    add<<<1, 256>>>(vector_a, vector_b, vector_c);  // Instructs the GPU to add these vectors using 256 kernels. 
-    cudaError_t status = cudaDeviceSynchronize();   // Await GPU. 
+    // Instructs the GPU to add these vectors using 256 kernels. 
+    // The <<<grid_size, block_size>>> are implicit arguments. 
+    // This computation runs as a single block of size 256. 
+    add<<<1, 256>>>(vector_a, vector_b, vector_c);
+
+    // Await GPU instructions to finish. 
+    cudaError_t status = cudaDeviceSynchronize();
 
     /* This is likely insufficient error handling. Still nice to know that it is a thing. */
     if (status != ::cudaSuccess) {
