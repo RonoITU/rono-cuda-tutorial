@@ -1,5 +1,15 @@
 /*
- * First example for any CUDA tutorial project. Add two vectors.
+ * First example for any CUDA tutorial project. Add two vectors. 
+ *
+ * Checkout the Fireship video with this example. 
+ * https://www.youtube.com/watch?v=pPStdjuYzSI 
+ * 
+ * Variants of this simple example appear in several intros to CUDA. 
+ * 
+ * To run it, 
+ * - Obtain the CUDA Toolkit at https://developer.nvidia.com/cuda-toolkit 
+ * - Get the Microsoft C++ compiler (cl.exe) included with Visual Studio. 
+ * (May need to add to path manually.)
  */
 
 #include <stdio.h>
