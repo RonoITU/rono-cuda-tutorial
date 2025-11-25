@@ -1,5 +1,5 @@
 /*
- * 
+ * Demonstrates 1D grid and explains the block size limit.
  */
 
 #include <stdio.h>
