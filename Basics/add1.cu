@@ -32,6 +32,8 @@ __global__ void add(int* a, int* b, int* c) {
  */
 __managed__ int vector_a[256], vector_b[256], vector_c[256];
 
+
+
 int main() {
     for (int i = 0; i < 256; i++) {
         vector_a[i] = i;
@@ -44,10 +46,10 @@ int main() {
     add<<<1, 256>>>(vector_a, vector_b, vector_c);
 
     // Await GPU instructions to finish. 
-    cudaError_t status = cudaDeviceSynchronize();
+    cudaError_t err = cudaDeviceSynchronize();
 
     /* This is likely insufficient error handling. Still nice to know that it is a thing. */
-    if (status != ::cudaSuccess) {
+    if (err != ::cudaSuccess) {
         printf("An error occurred.");
         return 1;
     }
