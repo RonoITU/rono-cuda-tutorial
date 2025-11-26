@@ -1,2 +1,5 @@
 # Windows executables.
 *.exe
+
+# VS Code settings.
+/.vscode
