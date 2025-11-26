@@ -1,6 +1,6 @@
 /*
  * Demonstrates unified memory programming on CUDA Managed Memory.
- * Official reference: https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#unified-memory-programming
+ * Reference: https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#unified-memory-programming
  *
  * On systems where managed memory is supported, we experience seamless use of memory across CPU and GPU. 
  * The necessary copying of data between CPU memory and GPU memory happens "behind the scenes". 
