@@ -4,10 +4,14 @@
 
 #include <stdio.h>
 
+
+
 const int N = 8;
 const int VECTOR_SIZE = N*N;
 
 #define RIDX(i,j,n) ((i)*(n)+(j))
+
+
 
 /*
  * Kernel function to write the Hilbert matrix.
@@ -19,10 +23,7 @@ __global__ void hilbert(float* a) {
     a[row * N + column] = 1.0 / float(1+column+row);
 }
 
-/*
- * Vectors as managed memory. 
- */
-__managed__ float vector_a[VECTOR_SIZE];
+
 
 void displayMatrix(float* v) {
     for (int i = 0; i < N; i++) {
@@ -33,6 +34,13 @@ void displayMatrix(float* v) {
     }
     printf("\n");
 }
+
+
+
+/*
+ * Vectors as managed memory. 
+ */
+__managed__ float vector_a[VECTOR_SIZE];
 
 int main() {
     // Set entire array to 8.88

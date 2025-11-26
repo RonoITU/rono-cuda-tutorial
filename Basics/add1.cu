@@ -14,6 +14,8 @@
 
 #include <stdio.h>
 
+
+
 /*
  * A kernel function. Here to add vectors together.
  * The same instruction will run in parallel on multiple CUDA kernels, with distinct indexing.
@@ -27,12 +29,12 @@ __global__ void add(int* a, int* b, int* c) {
     c[i] = a[i] + b[i];
 }
 
+
+
 /*
  * Managed memory is an alternative to manually allocating GPU and CPU shared memory. 
  */
 __managed__ int vector_a[256], vector_b[256], vector_c[256];
-
-
 
 int main() {
     for (int i = 0; i < 256; i++) {
@@ -49,8 +51,8 @@ int main() {
     cudaError_t err = cudaDeviceSynchronize();
 
     /* This is likely insufficient error handling. Still nice to know that it is a thing. */
-    if (err != ::cudaSuccess) {
-        printf("An error occurred.");
+    if (err != cudaError::cudaSuccess) {
+        printf("A CUDA error occurred: %s", cudaGetErrorString(err));
         return 1;
     }
 

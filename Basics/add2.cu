@@ -6,6 +6,8 @@
 
 const int VECTOR_SIZE = 2048;
 
+
+
 /*
  * Kernel function to add two vectors together. 
  */
@@ -14,12 +16,12 @@ __global__ void add(int* a, int* b, int* c) {
     c[i] = a[i] + b[i];
 }
 
+
+
 /*
  * Vectors as managed memory. 
  */
 __managed__ int vector_a[VECTOR_SIZE], vector_b[VECTOR_SIZE], vector_c[VECTOR_SIZE];
-
-
 
 int main() {
     for (int i = 0; i < VECTOR_SIZE; i++) {
@@ -47,7 +49,7 @@ int main() {
     cudaError_t err = cudaDeviceSynchronize();
 
     if (err != cudaError::cudaSuccess) {
-        printf("An error occurred: %s", cudaGetErrorString(err));
+        printf("A CUDA error occurred: %s", cudaGetErrorString(err));
         return 1;
     }
 
