@@ -6,7 +6,8 @@
  * The necessary copying of data between CPU memory and GPU memory happens "behind the scenes". 
  * 
  * A program using managed memory may need to check the support level of the system. 
- * Some systems treat all pointers as unified memory, while others need specific use of "cudaMallocManaged" and "cudaFree". 
+ * Some newer systems treat all pointers as unified memory. 
+ * To work on most systems with Unified Memory support, use "cudaMallocManaged" and "cudaFree". 
  */
 
 #include <stdio.h>
@@ -24,6 +25,9 @@ __global__ void add(int* a, int* b) {
 
 
 int main() {
+    // CUDA Managed Memory allocation. 
+    // Recall the error handling necessary for malloc in general. 
+    // cudaMallocManaged may return an error value. 
     int* vector_a; 
     cudaMallocManaged(&vector_a, 256 * sizeof(int));
     int* vector_b; 
@@ -51,6 +55,8 @@ int main() {
 
     printf("Result: sum = %d\n", result_sum);
 
+    // CUDA Memory free. 
+    // cudaFree may return an error value. 
     cudaFree(vector_a);
     cudaFree(vector_b);
 }
