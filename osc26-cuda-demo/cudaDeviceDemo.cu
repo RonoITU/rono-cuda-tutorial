@@ -68,7 +68,7 @@ int main() {
     // In a realistic scenario we have calculate how many blocks are needed
     // at runtime based on the size of a, b, r. Not from constants. 
 
-    int blocks = N / BLOCKSIZE + ( N % BLOCKSIZE > 0 );
+    int blocks = (N + BLOCKSIZE - 1) / BLOCKSIZE;
     printf ( "%d blocks are needed.\n", blocks );
 
 
