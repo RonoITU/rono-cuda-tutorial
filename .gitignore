@@ -1,5 +1,8 @@
 # Windows executables.
 *.exe
 
+# a.out on Linux using NVCC/GCC. 
+a.out
+
 # VS Code settings.
 /.vscode
